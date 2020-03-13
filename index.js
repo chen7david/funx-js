@@ -36,7 +36,7 @@ let self = {
 
     randInt: (length = 1) => {
         let exp = length -1 > 0 ? length -1 : 1
-        Math.floor((Math.random() * 9 * Math.pow(10, exp)) + Math.pow(10, exp))
+        return Math.floor((Math.random() * 9 * Math.pow(10, exp)) + Math.pow(10, exp))
     },
 
     timestamp: () => new Date().toISOString()
