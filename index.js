@@ -19,6 +19,16 @@ let self = {
             if(keys.includes(key)) delete object[key]
         })
         return object
+    },
+
+    mapIds: (objects) => objects.map(el => el.id),
+
+    notIn: (setA, setB) => setA.filter(el => !setB.includes(el)),
+
+    calcSync: (origional, target) => {
+        let add = self.notIn(target, origional)
+        let remove = self.notIn(origional, target)
+        return {add, remove}
     }
 }
 
