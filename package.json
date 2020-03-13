@@ -1,0 +1,22 @@
+{
+  "name": "funx-js",
+  "version": "0.0.1",
+  "description": "js helper functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chen7david/funx-js.git"
+  },
+  "keywords": [
+    "helper-functions"
+  ],
+  "author": "David M.Chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chen7david/funx-js/issues"
+  },
+  "homepage": "https://github.com/chen7david/funx-js#readme"
+}
