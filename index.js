@@ -8,6 +8,8 @@ let self = {
 
     isObject: (object) => typeof object === 'object' && object !== null,
 
+    isString: (object) => typeof object === 'string',
+
     pick: (O, K) => K.reduce((o, k) => (o[k]=O[k], o), {}),
 
     omit: (object, keys) => {
