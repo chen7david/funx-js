@@ -1,6 +1,6 @@
 {
   "name": "funx-js",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "js helper functions",
   "main": "index.js",
   "repository": {

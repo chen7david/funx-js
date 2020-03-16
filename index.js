@@ -30,12 +30,6 @@ let self = {
 
     notIn: (setA, setB) => setA.filter(el => !setB.includes(el)),
 
-    calcSync: (origional, target) => {
-        let add = self.notIn(target, origional)
-        let remove = self.notIn(origional, target)
-        return {add, remove}
-    },
-
     randInt: (length = 1) => {
         let exp = length -1 > 0 ? length -1 : 1
         return Math.floor((Math.random() * 9 * Math.pow(10, exp)) + Math.pow(10, exp))
