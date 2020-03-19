@@ -30,12 +30,43 @@ let self = {
 
     notIn: (setA, setB) => setA.filter(el => !setB.includes(el)),
 
-    randInt: (length = 1) => {
-        let exp = length -1 > 0 ? length -1 : 1
-        return Math.floor((Math.random() * 9 * Math.pow(10, exp)) + Math.pow(10, exp))
+    randInt: (min,max) => Math.floor(Math.random() * (max - min + 1)) + min,
+
+    randEl: (array) => {
+        const randInt = self.randInt(0, array.length -1)
+        return array[randInt]
     },
 
-    timestamp: () => new Date().toISOString()
+    randChar: () => {
+        const chars = "1234567890ABCDEFGIJKLMNOPQRSTUVWXYZ"
+        return self.randEl(chars)
+    },
+
+    serialInt: (mask) => {
+        let serial = ""
+        if(mask) {
+            for(let i = 0; i < mask.length; i++){
+                let maskChar = mask[i] 
+                serial += maskChar == "0" ? self.randInt(0,9) : maskChar
+            }
+        }
+        return serial
+    },
+
+    serialChar: (mask) => {
+        let serial = ""
+        if(mask) {
+            for(let i = 0; i < mask.length; i++){
+                let maskChar = mask[i] 
+                serial += maskChar == "0" ? self.randChar() : maskChar
+            }
+        }
+        return serial
+    },
+
+    timestamp: () => new Date().toISOString(),
+
+
 }
 
 module.exports = self
