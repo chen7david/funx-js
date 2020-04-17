@@ -1,3 +1,7 @@
+const fs = require('fs')
+const path = require('path')
+const crypto = require('crypto')
+
 let self = {
     
     pluralize: require('./pluralize'),
@@ -24,6 +28,20 @@ let self = {
             if(keys.includes(key)) delete object[key]
         })
         return object
+    },
+
+    reqdir: (...folderPath) => {
+    
+        const modules = {}
+        const folder = path.join(...folderPath)
+        const files = fs.readdirSync(folder)
+    
+        for(let file of files){
+            if(file.indexOf(".js") > -1 && file != 'index.js')
+            modules[file.replace(/\.js/, '')] = require(path.join(folder,file))
+        }
+    
+        return modules
     },
 
     mapIds: (objects) => objects.map(el => el.id),
@@ -63,6 +81,8 @@ let self = {
         }
         return serial
     },
+
+    md5: () => crypto.createHash('md5').update(`${Math.random()}`).digest('hex'),
 
     timestamp: () => new Date().toISOString(),
 
