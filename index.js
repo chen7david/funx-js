@@ -44,6 +44,23 @@ let self = {
         return modules
     },
 
+    toMiliSeconds: (str) => {
+
+        const unit = str.slice(str.length - 1)
+    
+        units = {
+            "m": 60,
+            "h": 60 * 60,
+            "d": 24 * 60 * 60,
+            "w": 7 * 24 * 60 * 60
+        }
+    
+        if(!Object.keys(units).includes(unit)) return false
+        const magnitude = parseInt(str, 10)
+        if(!magnitude) return false
+        return magnitude * units[unit] * 1000
+    },
+
     mapIds: (objects) => objects.map(el => el.id),
 
     notIn: (setA, setB) => setA.filter(el => !setB.includes(el)),
