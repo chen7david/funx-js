@@ -49,6 +49,7 @@ let self = {
         const unit = str.slice(str.length - 1)
     
         units = {
+            "s": 1,
             "m": 60,
             "h": 60 * 60,
             "d": 24 * 60 * 60,
@@ -103,7 +104,21 @@ let self = {
 
     timestamp: () => new Date().toISOString(),
 
+    koaview: (options) => async (ctx, next) => {
 
+        const { viewsPath, template } = options
+
+        function render(name, data = {}){
+            const fileName = name.includes('.html') ? name : name + '.html'
+            const filePath = path.join(viewsPath, fileName) 
+            if(!fs.existsSync(filePath)) throw(`filePath ${filePath} does not exist!`)
+            const file = fs.readFileSync(filePath, 'utf8')
+            return template(file)(data)
+        }
+
+        ctx.render = render
+        await next()
+    }
 }
 
 module.exports = self
