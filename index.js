@@ -105,6 +105,11 @@ let self = {
     timestamp: () => new Date().toISOString(),
 
     koaview: (options) => async (ctx, next) => {
+        ctx.render = self.render(options)
+        await next()
+    },
+
+    render: (options) => (name, data = {}) => {
 
         const { viewsPath, template } = options
 
@@ -115,9 +120,8 @@ let self = {
             const file = fs.readFileSync(filePath, 'utf8')
             return template(file)(data)
         }
-
-        ctx.render = render
-        await next()
+        
+        return render(name, data)
     }
 }
 
